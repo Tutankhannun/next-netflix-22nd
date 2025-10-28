@@ -57,3 +57,44 @@
 - [Next.js 14에서 변한 것들](https://velog.io/@lee_1124/Next.js-14-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8)
 - [Git 협업 가이드](https://velog.io/@jinuku/Git-%ED%98%91%EC%97%85-%EA%B0%80%EC%9D%B4%EB%93%9C)
 - [디자이너와 개발자가 협업하기 위한 피그마 기본 기능](https://chingguhl.tistory.com/entry/%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%EA%BC%AD-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-%ED%94%BC%EA%B7%B8%EB%A7%88-10%EA%B0%80%EC%A7%80-%EA%B8%B0%EB%8A%A5-%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%88%EC%99%80-%EA%B0%9C%EB%B0%9C%EC%9E%90%EA%B0%80-%ED%98%91%EC%97%85%ED%95%98%EA%B8%B0-%EC%9C%84%ED%95%9C-%ED%94%BC%EA%B7%B8%EB%A7%88-%EA%B8%B0%EB%B3%B8-%EA%B8%B0%EB%8A%A5)
+---
+
+# 📘 GitHub 협업 브랜치 전략 (next-netflix-22nd)
+
+## 🏁 목적
+
+- `main` 브랜치는 항상 **배포 가능한 안정 버전**으로 유지
+- 팀원별로 **담당 페이지별 브랜치**를 생성하여 작업
+- 완료되면 `main` 브랜치로 **Pull Request (PR)** 하여 병합
+
+---
+
+## 📁 브랜치 구조
+
+| 브랜치 이름     | 담당 파일                      | 담당자        |
+|----------------|---------------------------------|----------------|
+| `main`         | 전체 (배포용)                   | 김윤성         |
+| `기능1`    | `-`, `-`        | 김윤성        |
+| `기능2`   | `-`, `-`       | 김윤성         |
+| `기능3` | `-`, `-`   | 이채연         |
+| `기능4` | `-`, `-`   | 이채연         |
+| `기능5`  | `-`, `-`     | 이채연        |
+
+---
+
+## 🛠️ 브랜치 작업 순서 (팀원용)
+
+```bash
+# 1. main 기준 브랜치 생성 및 전환
+git checkout main
+git pull origin main
+git checkout -b 기능1
+
+# 2. 파일 수정 및 작업
+
+# 3. 변경사항 커밋
+git add .
+git commit -m "기능1 작업"
+
+# 4. 브랜치 푸시
+git push origin 기능1
