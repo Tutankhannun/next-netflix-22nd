@@ -9,14 +9,13 @@ export default function Menu() {
   ];
 
   return (
-    // 절대 위치(absolute) 아님! 레이아웃에서 자연스럽게 아래로 이어지도록 고정 높이 48px
-    <nav aria-label="home-menu" className="w-[375px] h-[48px] bg-[#121212]">
+    <nav
+      aria-label="home-menu"
+      className="w-[375px] h-12 bg-[#121212] border-t border-white/10 text-white"
+    >
       <ul className="h-full flex items-center justify-between px-3">
         {items.map((it) => (
-          <li
-            key={it.key}
-            className="w-[60px] flex flex-col items-center text-center"
-          >
+          <li key={it.key} className="w-[60px] flex flex-col items-center">
             <img
               src={it.src}
               alt={it.label}
@@ -24,7 +23,9 @@ export default function Menu() {
               height={24}
               className="w-6 h-6"
             />
-            <span className="text-caption-02 -mt-0.5">{it.label}</span>
+            <span className="mt-0.5 text-[10px] leading-[12px] opacity-80">
+              {it.label}
+            </span>
           </li>
         ))}
       </ul>

@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // ✅ 필수
+    "paths": { "@/*": ["src/*"] },
+
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -13,14 +16,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "plugins": [{ "name": "next" }]
   },
   "include": [
     "next-env.d.ts",
