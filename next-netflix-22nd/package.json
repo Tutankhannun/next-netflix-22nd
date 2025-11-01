@@ -9,11 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "lottie-react": "^2.4.1",
     "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0"
   },
-  "devDependencies": {
+  "devDependencies": {"@svgr/webpack":"^8.1.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -27,3 +28,4 @@
     "typescript": "^5"
   }
 }
+

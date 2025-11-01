@@ -3,7 +3,7 @@ import BrandSplash from '@/components/landing/BrandSplash';
 
 export default function Page() {
   return (
-    <div className="h-full w-full relative">
+    <div className="h-dvh w-full">
       <BrandSplash />
     </div>
   );
