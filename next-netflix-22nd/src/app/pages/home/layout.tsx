@@ -6,10 +6,10 @@ import Header from '@home/header';
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh w-full bg-white flex items-start justify-center">
+    <div className="min-h-dvh w-full bg-gray-500 flex items-start justify-center">
       <div className="relative w-[375px] h-[732px] text-white bg-black">
         {/* 헤더: 오버레이 1회만 */}
-        <div className="absolute top-0 left-0 right-0 z-30">
+        <div className="absolute top-3 left-0 right-0 z-30">
           <Header />
         </div>
         {/* 스크롤 영역: 상단 패딩 0 (맨 윗부분부터 Hero 시작) */}
