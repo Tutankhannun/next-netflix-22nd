@@ -1,8 +1,8 @@
 // src/app/pages/home/layout.tsx
 
 import type { ReactNode } from 'react';
-import Menu from '../../../components/home/menu';
-import Header from '../../../components/home/header';
+import Menu from '@home/Menu';
+import Header from '@home/Header';
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   return (

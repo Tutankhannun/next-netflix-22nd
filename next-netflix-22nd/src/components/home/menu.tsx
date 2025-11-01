@@ -1,31 +1,32 @@
 // src/components/home/menu.tsx
+import HomeIcon from '@/public/icons/HomeIcon';
+import SearchIcon from '@/public/icons/SearchIcon';
+import ComingSoonIcon from '@/public/icons/ComingSoonIcon';
+import DownloadIcon from '@/public/icons/DownloadIcon';
+import MoreIcon from '@/public/icons/MoreIcon';
+
 export default function Menu() {
   const items = [
-    { key: 'home', label: 'Home', src: '/icon/home.svg' },
-    { key: 'search', label: 'Search', src: '/icon/search.svg' },
-    { key: 'coming-soon', label: 'Coming Soon', src: '/icon/coming-soon.svg' },
-    { key: 'download', label: 'Download', src: '/icon/download.svg' },
-    { key: 'more', label: 'More', src: '/icon/more.svg' },
+    { key: 'home', label: 'Home', Icon: HomeIcon },
+    { key: 'search', label: 'Search', Icon: SearchIcon },
+    { key: 'coming-soon', label: 'Coming Soon', Icon: ComingSoonIcon },
+    { key: 'download', label: 'Download', Icon: DownloadIcon },
+    { key: 'more', label: 'More', Icon: MoreIcon },
   ];
 
   return (
     <nav
       aria-label="home-menu"
-      className="w-[375px] h-12 bg-[#121212] border-t border-white/10 text-white"
+      className="w-[375px] h-12 bg-[#121212] border-t border-white/10 "
     >
-      <ul className="h-full flex items-center justify-between px-3">
-        {items.map((it) => (
-          <li key={it.key} className="w-[60px] flex flex-col items-center">
-            <img
-              src={it.src}
-              alt={it.label}
-              width={24}
-              height={24}
-              className="w-6 h-6"
-            />
-            <span className="mt-0.5 text-[10px] leading-[12px] opacity-80">
-              {it.label}
-            </span>
+      <ul className="h-full flex items-center justify-between px-3 text-white">
+        {items.map(({ key, label, Icon }) => (
+          <li
+            key={key}
+            className="w-[60px] flex flex-col items-center text-menu-gray hover:text-white"
+          >
+            <Icon className="w-6 h-6" aria-hidden />
+            <span className="mt-0.5 text-[10px] leading-[12px]">{label}</span>
           </li>
         ))}
       </ul>

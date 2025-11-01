@@ -1,7 +1,7 @@
 // src/app/pages/home/page.tsx
-import Section from '../../../components/home/section';
-import CardRow from '../../../components/home/cardrow';
-import Hero from '../../../components/home/hero';
+import Section from '@home/Section';
+import Hero from '@home/Hero';
+import CardRow from '@home/CardRow';
 
 // 기존 섹션들 + 새 섹션들 임포트
 import {
