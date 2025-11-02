@@ -17,28 +17,15 @@ async function tmdbFetch<T>(
   p: Record<string, any> = {},
   init?: RequestInit,
 ): Promise<T> {
-  const v4 = process.env.TMDB_ACCESS_TOKEN;
-  const v3 = process.env.TMDB_API_KEY;
-
-  // If no credentials, return a small demo so the UI can render
-  if (!v4 && !v3) {
-    const demo = { results: [
-      { id: 763215, media_type: 'movie', title: 'Damsel', poster_path: '/AgHbB9DCE9aE57zkHjSmseszh6e.jpg', backdrop_path: '/1jS5ucPZ8f0S0Zs5Y9KJ3aG2Wz3.jpg' },
-      { id: 66732, media_type: 'tv', name: 'Stranger Things', poster_path: '/x2LSRK2Cm7MZhjluni1msVJ3wDF.jpg', backdrop_path: '/56v2KjBlU4XaOv9rVYEQypROD7P.jpg' },
-    ] } as unknown as T;
-    return demo;
-  }
-
-  const q: Record<string, any> = { ...p };
-  if (!v4 && v3) q.api_key = v3; // fallback to v3 key
-
-  const url = `${TMDB_BASE}${path}?${paramsToQuery(q)}`;
-  const headers: Record<string, string> = { 'Content-Type': 'application/json;charset=utf-8' };
-  if (v4) headers.Authorization = `Bearer ${v4}`;
-
+  const token = process.env.TMDB_ACCESS_TOKEN!;
+  const url = `${TMDB_BASE}${path}?${paramsToQuery(p)}`;
   const res = await fetch(url, {
     ...init,
-    headers,
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    // Next.js App Router의 캐시/리밸리데이트 정책은 필요시 조절
     next: { revalidate: 60 },
   });
   if (!res.ok) {
@@ -55,6 +42,7 @@ export function tmdbImage(
   return `https://image.tmdb.org/t/p/${size}${path}`;
 }
 
+/* 기존에 쓰던 함수들 (생략된 경우 너의 기존 코드 유지) */
 export async function getTrendingNow() {
   return tmdbFetch<{ results: any[] }>('/trending/all/day');
 }
@@ -76,16 +64,19 @@ export async function getTop10InKoreaToday() {
   return { results: all.results.slice(0, 10) };
 }
 
+/*  Korean Movies */
+
 export async function getKoreanMovies(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/movie', {
     page,
-    with_origin_country: 'KR',
+    with_origin_country: 'KR', // 한국 제작
     watch_region: 'KR',
     include_adult: false,
     sort_by: 'popularity.desc',
   });
 }
 
+/* Netflix Originals (TV 기준: network 213) */
 export async function getNetflixOriginals(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/tv', {
     page,
@@ -96,6 +87,7 @@ export async function getNetflixOriginals(page = 1) {
   });
 }
 
+/*New Releases (최근 90일 영화) */
 export async function getNewReleases(page = 1) {
   const today = new Date();
   const past = new Date();

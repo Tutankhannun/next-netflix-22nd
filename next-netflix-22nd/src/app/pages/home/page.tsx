@@ -5,6 +5,7 @@ import CardRow from '@home/cardrow';
 import HeroOverlay from '@home/herooverlay';
 import Previews from '@home/previews';
 
+// 기존 섹션들 + 새 섹션들 임포트
 import {
   getPopularOnNetflix,
   getTrendingNow,
@@ -15,6 +16,7 @@ import {
 } from '@/lib/tmdb';
 
 export default async function Page() {
+  // My List는 아직 저장소 연동이 없으니 비워둠(섹션은 보이되, 내용 없으면 표시문구가 나옴)
   const myList: any[] = [];
 
   const [pPopular, pTrending, pTop10, pKrMovies, pOriginals, pNew] =
@@ -40,6 +42,7 @@ export default async function Page() {
   const newReleases =
     pNew.status === 'fulfilled' ? (pNew.value.results ?? []) : [];
 
+  // Hero 후보: 트렌딩에서 하나, 없으면 다른 섹션에서
   const heroItem =
     trending[0] ??
     popularNetflix[0] ??
@@ -49,14 +52,17 @@ export default async function Page() {
     top10[0];
 
   const heroRank = heroItem
-    ? (top10.findIndex((x: any) => x.id === (heroItem as any).id) + 1) || undefined
+    ? top10.findIndex((x: any) => x.id === (heroItem as any).id) + 1 ||
+      undefined
     : undefined;
 
   return (
     <>
+      {/* Hero는 이미지만 (상단부터 415px) */}
       <Hero item={heroItem} />
       <HeroOverlay rank={heroRank} />
 
+      {/* 헤더에 가리지 않도록 Hero 이후부터만 여백 */}
       <div className="mt-14 px-6 space-y-10">
         <Section title="Previews">
           <Previews items={trending.length ? trending : popularNetflix} />
