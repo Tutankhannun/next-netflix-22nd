@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import Lottie from 'react-lottie-player';
 
 export default function BrandSplash() {
   const playerRef = useRef<any>(null);
@@ -14,17 +15,7 @@ export default function BrandSplash() {
     router.push('/pages/home');
   }, [router]);
 
-  // Load lottie-player web component once (no-op if already defined)
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!customElements.get('lottie-player')) {
-      const s = document.createElement('script');
-      s.src =
-        'https://unpkg.com/@lottiefiles/lottie-player@2.0.3/dist/lottie-player.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
-  }, []);
+  // Using react-lottie-player – no web component script needed
 
   // Any key or pointer input triggers navigation (once)
   useEffect(() => {
@@ -41,14 +32,7 @@ export default function BrandSplash() {
   const lottieUrl =
     process.env.NEXT_PUBLIC_SPLASH_LOTTIE_URL ?? '/lottie/Landing.json';
 
-  // Navigate on animation complete
-  useEffect(() => {
-    const el = playerRef.current as any | null;
-    if (!el || typeof el.addEventListener !== 'function') return;
-    const onComplete = () => goHome();
-    el.addEventListener('complete', onComplete, { once: true });
-    return () => el.removeEventListener('complete', onComplete);
-  }, [goHome]);
+  // react-lottie-player provides onComplete prop; no manual listener
 
   // Compute fallback timeout from Lottie meta (ip/op/fr) when local JSON is used
   useEffect(() => {
@@ -80,14 +64,15 @@ export default function BrandSplash() {
       className="fixed inset-0 grid place-items-center bg-black"
       aria-label="Netflix splash"
     >
-      <lottie-player
+      <Lottie
         ref={playerRef}
-        autoplay
-        mode="normal"
-        speed="1"
+        play
+        speed={1}
+        loop={false}
         style={{ width: '400px', height: '400px' }}
-        src={lottieUrl}
-      ></lottie-player>
+        path={lottieUrl}
+        onComplete={goHome}
+      />
     </section>
   );
 }
