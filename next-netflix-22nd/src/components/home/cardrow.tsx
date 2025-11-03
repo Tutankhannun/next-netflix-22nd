@@ -35,7 +35,6 @@ export default function CardRow({
       <ul className="flex gap-3 snap-x snap-mandatory">
         {items.map((it, idx) => {
           const mediaType = it.media_type ?? (it.name ? 'tv' : 'movie');
-          const href = mediaType === 'tv' ? `/tv/${it.id}` : `/movie/${it.id}`;
           const img = tmdbImage(it.poster_path || it.backdrop_path, 'w300');
 
           return (
@@ -43,7 +42,7 @@ export default function CardRow({
               key={`${mediaType}-${it.id}-${idx}`}
               className="snap-start shrink-0 w-[103px]"
             >
-              <Link href={href} className="group relative block">
+              <Link href="#" className="group relative block">
                 {img ? (
                   <Image
                     src={img}
