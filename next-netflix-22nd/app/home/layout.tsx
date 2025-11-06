@@ -6,7 +6,7 @@ import Header from '@home/header';
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-dvh w-full bg-black flex items-start justify-center">
+    <div className="min-h-dvh w-full bg-[gray] flex items-start justify-center">
       <div className="relative w-[375px] h-[732px] text-white bg-black">
         {/* 헤더: 오버레이 1회만 */}
         <div className="absolute top-3 left-0 right-0 z-30">

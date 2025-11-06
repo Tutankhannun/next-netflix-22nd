@@ -23,10 +23,10 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@home/*": ["./src/components/home/*"],
-      "@pages/*": ["./src/app/pages/*"],
       "@lib/*": ["./src/lib/*"],
       "@icons/*": ["./src/icons/*"],
-      "@/public/*": ["public/*"]
+      "@/public/*": ["public/*"],
+      "@/app/*": ["app/*"]
     }
   },
   "include": [

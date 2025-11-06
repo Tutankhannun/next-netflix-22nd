@@ -1,4 +1,4 @@
-// src/app/pages/home/page.tsx
+// src/app/home/page.tsx
 import Section from '@home/section';
 import Hero from '@home/hero';
 import CardRow from '@home/cardrow';

@@ -12,7 +12,7 @@ export default function BrandSplash() {
   const goHome = useCallback(() => {
     if (navigatedRef.current) return;
     navigatedRef.current = true;
-    router.push('/pages/home');
+    router.push('/home');
   }, [router]);
 
   // Using react-lottie-player – no web component script needed
