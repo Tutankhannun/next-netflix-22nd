@@ -1,0 +1,131 @@
+/* my-app/src/app/globals.css */
+@import 'tailwindcss';
+
+/* ---------------------------------------------------
+   Color 
+--------------------------------------------------- */
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-menu-gray: #8c8787;
+  --color-play-gray: #c4c4c4;
+  --color-search-bg: #424242;
+}
+
+/* ---------------------------------------------------
+   Typography Tokens (5 styles)
+--------------------------------------------------- */
+
+/* headline-01 */
+.text-headline-01 {
+  font-weight: 700;
+  font-size: 26.75px;
+  line-height: 20px;
+  letter-spacing: -0.07px;
+  text-align: center;
+}
+
+/* headline-02 */
+.text-headline-02 {
+  font-weight: 700;
+  font-size: 20.92px;
+  line-height: 15.64px;
+  letter-spacing: -0.06px;
+}
+
+/* caption-02 */
+.text-caption-02 {
+  font-weight: 500;
+  font-size: 8.2px;
+  line-height: 30.4px;
+  letter-spacing: 0.26px;
+  text-align: center;
+}
+
+/* body-03 */
+.text-body-03 {
+  font-weight: 400;
+  font-size: 13.64px;
+  line-height: 20px;
+  letter-spacing: -0.04px;
+  text-align: center;
+}
+
+/* caption-01 */
+.text-caption-01 {
+  font-weight: 400;
+  font-size: 17.2px;
+  line-height: 30.45px;
+  letter-spacing: 0.76px;
+  text-align: center;
+}
+
+/* search-placeholder */
+.text-search-placeholder {
+  font-weight: 400;
+  font-size: 15.21px;
+  line-height: 31px;
+  letter-spacing: 0.21px;
+}
+
+/* ---------------------------------------------------
+   Tailwind Base Layer
+--------------------------------------------------- */
+@layer base {
+  body {
+    background: var(--color-black);
+    color: var(--color-white);
+    font-family: 'SF Pro Display', sans-serif;
+  }
+}
+
+/* ---------------------------------------------------
+   Component Layer (example)
+--------------------------------------------------- */
+@layer components {
+  .mobile-frame {
+    width: 100vw;
+    height: 100vh;
+    max-width: 375px;
+    max-height: 812px;
+    border-radius: 36px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    background-color: var(--color-black);
+  }
+}
+
+/* ---------------------------------------------------
+   🪄 Utility Layer
+--------------------------------------------------- */
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text color utilities */
+  .text-menu-gray {
+    color: var(--color-menu-gray);
+  }
+
+  .text-play-gray {
+    color: var(--color-play-gray);
+  }
+
+  /* Background color utilities */
+  .bg-menu-gray {
+    background-color: var(--color-menu-gray);
+  }
+
+  .bg-play-gray {
+    background-color: var(--color-play-gray);
+  }
+
+  .bg-search-bg {
+    background-color: var(--color-search-bg);
+  }
+}
