@@ -4,7 +4,6 @@
 import { useState } from 'react';
 import SearchIcon from '@/public/icons/SearchIcon';
 import DeleteIcon from '@/public/icons/DeleteIcon';
-import Image from 'next/image';
 
 interface SearchBoxProps {
   onSearchChange: (value: string) => void;

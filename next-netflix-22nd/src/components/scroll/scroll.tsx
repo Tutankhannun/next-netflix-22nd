@@ -39,6 +39,7 @@ const ScrollMovies = () => {
       setMovies((prev) => [...prev, ...unique]);
       setPageParams((prev) => [...prev, pageNum]);
       setHasNextPage(data.page < data.total_pages);
+      console.log('data', data);
     } catch (error) {
       console.log('error', error);
     } finally {
