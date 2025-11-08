@@ -30,12 +30,27 @@ export default async function Page({
   const id = searchParams?.id;
 
   if (id) {
-    const item = await fetchTmdbDetail(mediaParam, id);
-    return (
-      <main>
-        <Detail item={item} />
-      </main>
-    );
+    try {
+      const item = await fetchTmdbDetail(mediaParam, id);
+      return (
+        <main>
+          <Detail item={item} />
+        </main>
+      );
+    } catch (err) {
+      console.error('Failed to load detail:', err);
+      // Fallback render to prove page-component wiring even if TMDB fails
+      return (
+        <main className="text-white">
+          <Detail
+            item={{
+              title: 'Unavailable',
+              overview: 'Failed to load data from TMDB. Please check API token.',
+            }}
+          />
+        </main>
+      );
+    }
   }
 
   return (

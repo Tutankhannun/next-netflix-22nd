@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import SearchIcon from '@/public/icons/SearchIcon';
+import DeleteIcon from '@/public/icons/DeleteIcon';
 import Image from 'next/image';
 
 interface SearchBoxProps {
@@ -50,7 +51,7 @@ export default function SearchBox({ onSearchChange }: SearchBoxProps) {
         className="absolute top-[19px] left-[339px] cursor-pointer"
         aria-label="Clear search"
       >
-        <Image src="/icons/vector.svg" alt="" width={15} height={15} />
+        <DeleteIcon className="w-5 h-5" />
       </button>
     </div>
   );
