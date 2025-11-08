@@ -21,24 +21,24 @@ export default function Detail({ item }: { item: DetailItem }) {
       <Hero item={item} />
       <div className="-mt-12 px-6 relative">
         <div
-          className="pointer-events-none absolute inset-x-0 -top-24 h-40 bg-gradient-to-b from-transparent via-black/40 to-black"
+          className="absolute flex items-center justify-center inset-x-0 -top-24 h-40 bg-gradient-to-b from-transparent via-black/40 to-black"
           aria-hidden
-        />
+        >
+          <button
+            type="button"
+            className="inline-flex items-center gap-2 rounded-md bg-white/70 px-30 py-2 text-black font-semibold text-lg shadow"
+            aria-label="Play"
+          >
+            <PlayIcon />
+            <span>Play</span>
+          </button>
+        </div>
       </div>
       {/* Reuse overlay for gradient/spacing; place our big Play button above it */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          className="inline-flex items-center gap-2 rounded-md bg-white/70 px-30 py-2 text-black font-semibold text-lg shadow"
-          aria-label="Play"
-        >
-          <PlayIcon />
-          <span>Play</span>
-        </button>
-      </div>
+      <div className="absolute inset-0 "></div>
 
       {/* Title and placeholder description */}
-      <div className="relative px-6 pt-12 pb-10 z-100">
+      <div className="relative px-6 pt-12 pb-10 z-10">
         <h2 className="text-headline-01 mb-3 ">{title}</h2>
         <p className="text-sm text-white/80 leading-5">{desc}</p>
       </div>
