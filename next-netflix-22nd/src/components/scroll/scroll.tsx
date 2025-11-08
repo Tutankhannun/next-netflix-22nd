@@ -24,7 +24,7 @@ const ScrollMovies = () => {
         {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || ''}`,
+            Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN || process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || ''}`,
             'Content-Type': 'application/json',
           },
         },

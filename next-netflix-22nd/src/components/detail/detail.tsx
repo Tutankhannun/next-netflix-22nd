@@ -14,9 +14,7 @@ type DetailItem = {
 
 export default function Detail({ item }: { item: DetailItem }) {
   const title = item?.title || item?.name || 'Previews';
-  const desc =
-    item?.overview ||
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque bibendum, sapien at viverra luctus, mi orci gravida elit, eget efficitur arcu lorem non arcu.';
+  const desc = item?.overview || '';
 
   return (
     <div className="text-white">
