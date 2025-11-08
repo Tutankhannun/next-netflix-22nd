@@ -3,8 +3,14 @@ import SearchResults from '@components/search/searchresults';
 import { getTrendingMovies } from '@/lib/tmdb';
 
 export default async function SearchPage() {
-  const data = await getTrendingMovies();
-  const movies = data.results || [];
+  let movies: any[] = [];
+  try {
+    const data = await getTrendingMovies();
+    movies = data.results || [];
+  } catch (err) {
+    console.error('Failed to load trending movies:', err);
+    movies = [];
+  }
 
   return (
     <div className="w-[375px] min-h-screen bg-black">

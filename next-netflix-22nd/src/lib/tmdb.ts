@@ -27,7 +27,8 @@ async function tmdbFetch<T>(
   p: Record<string, any> = {},
   init?: RequestInit,
 ): Promise<T> {
-  const token = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN!;
+  const token =
+    process.env.TMDB_ACCESS_TOKEN || process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || '';
   const url = `${TMDB_BASE}${path}?${paramsToQuery(p)}`;
   const res = await fetch(url, {
     ...init,

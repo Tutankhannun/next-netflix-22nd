@@ -5,7 +5,8 @@ import Detail from '@components/detail/detail';
 type Search = { media?: 'movie' | 'tv' | string; id?: string };
 
 async function fetchTmdbDetail(media: 'movie' | 'tv', id: string) {
-  const token = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN!;
+  const token =
+    process.env.TMDB_ACCESS_TOKEN || process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || '';
   const url = `https://api.themoviedb.org/3/${media}/${id}?language=ko-KR`;
   const res = await fetch(url, {
     headers: {
