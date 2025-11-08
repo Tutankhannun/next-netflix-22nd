@@ -3,6 +3,16 @@ import 'server-only';
 
 const TMDB_BASE = 'https://api.themoviedb.org/3';
 
+// Movie 타입 추가
+export interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  backdrop_path: string | null;
+  poster_path: string | null;
+  overview: string;
+}
+
 function paramsToQuery(p: Record<string, any> = {}) {
   const q = new URLSearchParams();
   Object.entries(p).forEach(([k, v]) => {
@@ -17,7 +27,7 @@ async function tmdbFetch<T>(
   p: Record<string, any> = {},
   init?: RequestInit,
 ): Promise<T> {
-  const token = process.env.TMDB_ACCESS_TOKEN!;
+  const token = process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN!;
   const url = `${TMDB_BASE}${path}?${paramsToQuery(p)}`;
   const res = await fetch(url, {
     ...init,
@@ -42,7 +52,6 @@ export function tmdbImage(
   return `https://image.tmdb.org/t/p/${size}${path}`;
 }
 
-/* 기존에 쓰던 함수들 (생략된 경우 너의 기존 코드 유지) */
 export async function getTrendingNow() {
   return tmdbFetch<{ results: any[] }>('/trending/all/day');
 }
@@ -55,7 +64,7 @@ export async function getPopularOnNetflix(
     page,
     sort_by: 'popularity.desc',
     with_watch_providers: '8', // Netflix
-    watch_region: 'KR',
+    watch_region: 'ENG',
     include_adult: false,
   });
 }
@@ -81,7 +90,7 @@ export async function getNetflixOriginals(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/tv', {
     page,
     with_networks: '213', // Netflix
-    watch_region: 'KR',
+    watch_region: 'ENG',
     include_adult: false,
     sort_by: 'popularity.desc',
   });
@@ -96,8 +105,15 @@ export async function getNewReleases(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/movie', {
     page,
     'primary_release_date.gte': gte,
-    watch_region: 'KR',
+    watch_region: 'ENG',
     include_adult: false,
     sort_by: 'primary_release_date.desc',
+  });
+}
+
+/* Top Searches (트렌딩 주간) */
+export async function getTrendingMovies() {
+  return tmdbFetch<{ results: Movie[] }>('/trending/all/week', {
+    language: 'eng-ENG',
   });
 }

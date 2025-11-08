@@ -15,20 +15,7 @@ export default function BrandSplash() {
     router.push('/home');
   }, [router]);
 
-  // Using react-lottie-player – no web component script needed
-
-  // Any key or pointer input triggers navigation (once)
-  useEffect(() => {
-    const onKey = () => goHome();
-    const onPointer = () => goHome();
-    window.addEventListener('keydown', onKey, { once: true });
-    window.addEventListener('pointerdown', onPointer, { once: true });
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      window.removeEventListener('pointerdown', onPointer);
-    };
-  }, [goHome]);
-
+  // Using react-lottie-player ??no web component script needed
   const lottieUrl =
     process.env.NEXT_PUBLIC_SPLASH_LOTTIE_URL ?? '/lottie/Landing.json';
 
@@ -36,6 +23,7 @@ export default function BrandSplash() {
 
   // Compute fallback timeout from Lottie meta (ip/op/fr) when local JSON is used
   useEffect(() => {
+    document?.body?.classList?.add('is-splash');
     let timeoutId: any;
     const compute = async () => {
       try {
@@ -56,12 +44,15 @@ export default function BrandSplash() {
       }
     };
     compute();
-    return () => clearTimeout(timeoutId);
+    return () => {
+      document?.body?.classList?.remove('is-splash');
+      clearTimeout(timeoutId);
+    };
   }, [lottieUrl, goHome]);
 
   return (
     <section
-      className="fixed inset-0 grid place-items-center bg-black"
+      className="grid place-items-center w-full h-full bg-black"
       aria-label="Netflix splash"
     >
       <Lottie

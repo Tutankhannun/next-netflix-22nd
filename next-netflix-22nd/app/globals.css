@@ -9,6 +9,7 @@
   --color-black: #000000;
   --color-menu-gray: #8c8787;
   --color-play-gray: #c4c4c4;
+  --color-search-bg: #424242;
 }
 
 /* ---------------------------------------------------
@@ -59,6 +60,14 @@
   text-align: center;
 }
 
+/* search-placeholder */
+.text-search-placeholder {
+  font-weight: 400;
+  font-size: 15.21px;
+  line-height: 31px;
+  letter-spacing: 0.21px;
+}
+
 /* ---------------------------------------------------
    Tailwind Base Layer
 --------------------------------------------------- */
@@ -87,7 +96,7 @@
 }
 
 /* ---------------------------------------------------
-   🪄 Utility Layer
+   Utility Layer
 --------------------------------------------------- */
 @layer utilities {
   .hide-scrollbar::-webkit-scrollbar {
@@ -115,4 +124,10 @@
   .bg-play-gray {
     background-color: var(--color-play-gray);
   }
+
+  .bg-search-bg {
+    background-color: var(--color-search-bg);
+  }
 }
+/* Splash-specific: hide menu/indicator when body has .is-splash */
+body.is-splash .splash-hide { display: none !important; }

@@ -15,8 +15,9 @@ export default function HeroOverlay({ rank }: { rank?: number }) {
       {rank && rank > 0 ? (
         <div className="relative z-10 flex justify-center">
           <div className="inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] font-semibold">
-            <span className="inline-block rounded border border-white/40 px-1 text-[9px] leading-none">
-              TOP 10
+            <span className="inline-block border border-white px-1 leading-none">
+              <p className="text-[6px]">TOP</p>
+              <p className="text-[10px]">10</p>
             </span>
             <span>#{rank} in Korea Today</span>
           </div>

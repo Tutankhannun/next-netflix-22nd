@@ -1,4 +1,4 @@
-// my-app/src/app/layout.tsx
+// app/layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
 
@@ -7,14 +7,11 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
   },
 };
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className="min-h-dvh bg-black">{children}</body>
     </html>
   );
 }
