@@ -10,7 +10,7 @@ import DownloadIcon from '@/public/icons/DownloadIcon';
 import MoreIcon from '@/public/icons/MoreIcon';
 
 export default function Menu() {
-  const [activeMenu, setActiveMenu] = useState<string>('home');
+  const [activeMenu, setActiveMenu] = useState<string>('');
   const router = useRouter();
 
   const items = [
