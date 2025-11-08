@@ -36,13 +36,14 @@ export default function CardRow({
         {items.map((it, idx) => {
           const mediaType = it.media_type ?? (it.name ? 'tv' : 'movie');
           const img = tmdbImage(it.poster_path || it.backdrop_path, 'w300');
+          const href = { pathname: '/detail', query: { media: mediaType, id: it.id } } as const;
 
           return (
             <li
               key={`${mediaType}-${it.id}-${idx}`}
               className="snap-start shrink-0 w-[103px]"
             >
-              <Link href="#" className="group relative block">
+              <Link href={href} className="group relative block">
                 {img ? (
                   <Image
                     src={img}
@@ -56,7 +57,7 @@ export default function CardRow({
                   <div className="w-[103px] h-[161px] bg-neutral-800" />
                 )}
 
-                {/* 🔻 제목 텍스트 블록 제거됨 */}
+                {/* 제목 텍스트 블록 제거됨 */}
 
                 {numbered && (
                   <div

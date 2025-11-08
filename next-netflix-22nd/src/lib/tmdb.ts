@@ -64,7 +64,7 @@ export async function getPopularOnNetflix(
     page,
     sort_by: 'popularity.desc',
     with_watch_providers: '8', // Netflix
-    watch_region: 'ENG',
+    watch_region: 'KR',
     include_adult: false,
   });
 }
@@ -90,7 +90,7 @@ export async function getNetflixOriginals(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/tv', {
     page,
     with_networks: '213', // Netflix
-    watch_region: 'ENG',
+    watch_region: 'KR',
     include_adult: false,
     sort_by: 'popularity.desc',
   });
@@ -105,7 +105,7 @@ export async function getNewReleases(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/movie', {
     page,
     'primary_release_date.gte': gte,
-    watch_region: 'ENG',
+    watch_region: 'KR',
     include_adult: false,
     sort_by: 'primary_release_date.desc',
   });
