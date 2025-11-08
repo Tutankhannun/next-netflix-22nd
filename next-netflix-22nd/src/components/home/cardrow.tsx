@@ -29,19 +29,29 @@ export default function CardRow({
         overflow-x-auto
         [-ms-overflow-style:none] [scrollbar-width:none]
         [&::-webkit-scrollbar]:hidden
-        -mx-6 px-6
+        -mx-6 px-3
       "
     >
       <ul className="flex gap-3 snap-x snap-mandatory">
         {items.map((it, idx) => {
-          const mediaType = it.media_type ?? (it.name ? 'tv' : 'movie');
+          const rawType = it.media_type;
+          // Skip unsupported types like 'person'
+          if (rawType && rawType !== 'movie' && rawType !== 'tv') return null;
+
+          const mediaType: 'movie' | 'tv' =
+            rawType === 'movie' || rawType === 'tv'
+              ? rawType
+              : it.name
+                ? 'tv'
+                : 'movie';
+
           const img = tmdbImage(it.poster_path || it.backdrop_path, 'w300');
-          const href = { pathname: '/detail', query: { media: mediaType, id: it.id } } as const;
+          const href = `/detail/${mediaType}/${it.id}` as const;
 
           return (
             <li
               key={`${mediaType}-${it.id}-${idx}`}
-              className="snap-start shrink-0 w-[103px]"
+              className="snap-start shrink-0 w-[103px] overflow-hidden"
             >
               <Link href={href} className="group relative block">
                 {img ? (

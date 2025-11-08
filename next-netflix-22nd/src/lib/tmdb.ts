@@ -28,7 +28,9 @@ async function tmdbFetch<T>(
   init?: RequestInit,
 ): Promise<T> {
   const token =
-    process.env.TMDB_ACCESS_TOKEN || process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || '';
+    process.env.TMDB_ACCESS_TOKEN ||
+    process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN ||
+    '';
   const url = `${TMDB_BASE}${path}?${paramsToQuery(p)}`;
   const res = await fetch(url, {
     ...init,
@@ -65,7 +67,7 @@ export async function getPopularOnNetflix(
     page,
     sort_by: 'popularity.desc',
     with_watch_providers: '8', // Netflix
-    watch_region: 'KR',
+    watch_region: 'US',
     include_adult: false,
   });
 }
@@ -91,7 +93,7 @@ export async function getNetflixOriginals(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/tv', {
     page,
     with_networks: '213', // Netflix
-    watch_region: 'KR',
+    watch_region: 'US',
     include_adult: false,
     sort_by: 'popularity.desc',
   });
@@ -106,7 +108,7 @@ export async function getNewReleases(page = 1) {
   return tmdbFetch<{ results: any[] }>('/discover/movie', {
     page,
     'primary_release_date.gte': gte,
-    watch_region: 'KR',
+    watch_region: 'US',
     include_adult: false,
     sort_by: 'primary_release_date.desc',
   });
@@ -115,6 +117,6 @@ export async function getNewReleases(page = 1) {
 /* Top Searches (트렌딩 주간) */
 export async function getTrendingMovies() {
   return tmdbFetch<{ results: Movie[] }>('/trending/all/week', {
-    language: 'eng-ENG',
+    language: 'eng-US',
   });
 }

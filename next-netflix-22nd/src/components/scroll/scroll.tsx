@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import type { Movie } from '@/lib/tmdb';
 import SearchItem from '@components/search/searchitem';
 
