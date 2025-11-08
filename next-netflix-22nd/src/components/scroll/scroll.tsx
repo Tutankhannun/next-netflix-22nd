@@ -19,16 +19,7 @@ const ScrollMovies = () => {
     if (pageParams.includes(pageNum)) return;
     setLoading(true);
     try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?page=${pageNum}`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN || process.env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN || ''}`,
-            'Content-Type': 'application/json',
-          },
-        },
-      );
+      const response = await fetch(`/api/tmdb/top-rated?page=${pageNum}`);
       const data = await response.json();
       const incoming: Movie[] = data?.results || [];
       const unique = incoming.filter((m) => {
